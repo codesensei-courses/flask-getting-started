@@ -9,8 +9,17 @@ app = Flask(__name__)
 def welcome():
     return "Welcome to my Flash Cards application!"
 
-# Please add: A page that shows how many times it has been viewed
 
 @app.route("/date")
 def date():
     return "This page was served at " + str(datetime.now())
+
+
+counter = 0
+
+
+@app.route("/count_views")
+def count_demo():
+    global counter
+    counter += 1
+    return "This page was served " + str(counter) + " times"
