@@ -1,7 +1,7 @@
 from flask import (Flask, render_template, abort, jsonify, request,
                    redirect, url_for)
 
-from model import db
+from model import db, save_db
 
 app = Flask(__name__)
 
@@ -33,11 +33,13 @@ def add_card():
         card = {"question": request.form['question'],
                 "answer": request.form['answer']}
         db.append(card)
-        # Add your code to this line so that it redirects to the card view
-        # For the newly created card
-        return redirect(url_for())
+        save_db()
+        return redirect(url_for('card_view', index=len(db)-1))
     else:
         return render_template("add_card.html")
+
+
+# Please write a view that shows the remove_card template
 
 
 @app.route("/api/card/")
