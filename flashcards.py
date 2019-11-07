@@ -1,4 +1,5 @@
-from flask import Flask, render_template, abort, jsonify
+from flask import (Flask, render_template, abort, jsonify, request,
+                   redirect, url_for)
 
 from model import db
 
@@ -25,12 +26,26 @@ def card_view(index):
         abort(404)
 
 
+@app.route('/add_card', methods=["GET", "POST"])
+def add_card():
+    if request.method == "POST":
+        # form has been submitted, process data
+        card = {"question": request.form['question'],
+                "answer": request.form['answer']}
+        db.append(card)
+        # Add your code to this line so that it redirects to the card view
+        # For the newly created card
+        return redirect(url_for())
+    else:
+        return render_template("add_card.html")
+
+
 @app.route("/api/card/")
 def api_card_list():
     return jsonify(db)
 
 
-@app.route('/api/card/<int:index>')
+@app.route("/api/card/<int:index>")
 def api_card_detail(index):
     try:
         return db[index]
