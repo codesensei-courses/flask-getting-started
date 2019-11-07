@@ -1,0 +1,18 @@
+[
+  {
+    "question": "Hello (formal)",
+    "answer": "Здравствуйте"
+  },
+  {
+    "question": "Goodbye (formal)",
+    "answer": "До свидания"
+  },
+  {
+    "question": "Hello (informal)",
+    "answer": "Привет"
+  },
+  {
+    "question": "Goodbye (informal)",
+    "answer": "Пока"
+  }
+]
